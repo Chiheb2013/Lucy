@@ -1,0 +1,24 @@
+﻿une opération est un dialogue qui permet à Lucy de faire un acte. l'acte est représenté par la levée d'un événement
+ainsi que par l'envoi d'un type plugin d'instruction au travers de cet événement.
+
+une opération se définit dans la bdd ainsi :
+	
+	operation:
+		name:[unique name]
+		keywords:[keys]
+		responses:[responses]
+		action:[plugin]
+		next:[operation]
+		location:[location]
+
+keywords,responses and location are the same things as for regular entries.
+
+name is a unique name is the bdd that represents this operation
+action is a plugin that will be called to execute this particular task
+next is a reference to the next operation that will be executed.
+
+using 'next' appropriatly allows to create seeming-intelligent behavior. for instance, you could ask whether to store a file,
+and if the response is 'yes', then you'll ask where to save that file, and finally do the storage. these are three operations.
+
+an operation contains the output of the plugin it called. this output is stored in memory as an 'object' instance.
+the output will be passed down to the next operation, and to the raised event
